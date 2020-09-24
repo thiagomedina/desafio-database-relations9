@@ -12,12 +12,12 @@ interface IRequest {
 
 @injectable()
 class CreateCustomerService {
-
+  
   @inject('CustomersRepository')
   constructor(private customersRepository: ICustomersRepository) {}
 
 
-  public async execute({ name, email }: IRequest): Promise<void> {
+  public async execute({ name, email }: IRequest): Promise<Customer> {
 
     
     // TODO
