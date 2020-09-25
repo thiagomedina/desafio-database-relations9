@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
 
-import { container } from 'tsyringe';
 
 export default class CustomersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -11,7 +11,8 @@ export default class CustomersController {
     
     const createUser = container.resolve(CreateCustomerService);
 
-    
-      return response.json({name, email});
+    const user = await createUser.execute({ name, email });
+
+      return response.json(user);
   }
 }
