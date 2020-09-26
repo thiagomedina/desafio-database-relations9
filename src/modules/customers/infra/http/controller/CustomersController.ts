@@ -13,6 +13,6 @@ export default class CustomersController {
 
     const user = await createUser.execute({ name, email });
 
-      return response.json(user);
+      return response.json({user});
   }
 }

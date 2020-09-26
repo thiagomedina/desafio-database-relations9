@@ -14,9 +14,9 @@ interface IRequest {
 class CreateCustomerService {
 
   constructor(
-    // @inject('CustomersRepository')
+    @inject('CustomersRepository')
     private customersRepository: ICustomersRepository) { }
-    
+
 
 
   public async execute({ name, email }: IRequest): Promise<Customer> {
