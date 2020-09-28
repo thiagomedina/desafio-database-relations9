@@ -29,13 +29,13 @@ class CreateCustomerService {
     }
 
 
-    const user = await this.customersRepository.create({
+    const customer = await this.customersRepository.create({
       name,
       email,
     });
 
 
-    return user;
+    return customer;
   }
 }
 

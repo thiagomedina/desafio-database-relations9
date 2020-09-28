@@ -6,7 +6,7 @@ export default class AddCustomerIdToOrders1601080953875 implements MigrationInte
         await queryRunner.addColumn(
             'orders',
             new TableColumn({
-                name: 'costumer_id',
+                name: 'customer_id',
                 type: 'uuid',
                 isNullable: true
             })
@@ -16,10 +16,10 @@ export default class AddCustomerIdToOrders1601080953875 implements MigrationInte
         await queryRunner.createForeignKey(
             'orders',
             new TableForeignKey({
-                name: 'OrdersCustumer',
-                columnNames: ['costumer_id'],
+                name: 'OrdersCustomer',
+                columnNames: ['customer_id'],
                 referencedColumnNames: ['id'],
-                referencedTableName: 'costumers',
+                referencedTableName: 'customers',
                 onDelete: `SET NULL `
 
             })
@@ -28,9 +28,9 @@ export default class AddCustomerIdToOrders1601080953875 implements MigrationInte
 
     public async down(queryRunner: QueryRunner): Promise<any> {
 
-        await queryRunner.dropForeignKey('orders', 'custumer_id')
+        await queryRunner.dropForeignKey('orders', 'customer_id')
 
-        await queryRunner.dropColumn('orders', 'costumer_id')
+        await queryRunner.dropColumn('orders', 'customer_id')
     }
 
 }
