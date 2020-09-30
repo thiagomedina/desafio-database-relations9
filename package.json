@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "author": "Gabriel Mello de Oliveira",
   "scripts": {
     "build": "tsc",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules src/shared/infra/http/server.ts",
@@ -14,7 +15,7 @@
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
-    "pg": "^8.3.0",
+    "pg": "^8.1.0",
     "reflect-metadata": "^0.1.10",
     "tsyringe": "^4.2.0",
     "typeorm": "0.2.24"

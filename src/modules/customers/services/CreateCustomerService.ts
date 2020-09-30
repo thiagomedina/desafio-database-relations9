@@ -1,4 +1,4 @@
-import { inject, injectable } from 'tsyringe';
+import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
@@ -12,30 +12,18 @@ interface IRequest {
 
 @injectable()
 class CreateCustomerService {
-
   constructor(
     @inject('CustomersRepository')
-    private customersRepository: ICustomersRepository) { }
-
-
+    private customersRepository: ICustomersRepository,
+  ) { }
 
   public async execute({ name, email }: IRequest): Promise<Customer> {
-
-    const checkUserExists = await this.customersRepository.findByEmail(email);
-
-
-    if (checkUserExists) {
-      throw new AppError('Email address already used.');
-    }
-
-
-    const customer = await this.customersRepository.create({
-      name,
+    const customerWithSameEmail = await this.customersRepository.findByEmail(
       email,
-    });
-
-
-    return customer;
+    );
+    if (customerWithSameEmail) throw new AppError('Email already in use.');
+    const costumer = await this.customersRepository.create({ name, email });
+    return costumer;
   }
 }
 
